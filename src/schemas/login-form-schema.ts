@@ -11,3 +11,5 @@ export const loginFormSchema = yup.object({
       "Password must be alphanumeric, and contain max 12 characters, a capital letter and a special character"
     ),
 });
+
+export type LoginFormSchema = yup.InferType<typeof loginFormSchema>;

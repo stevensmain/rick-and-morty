@@ -1,11 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { loginFormSchema } from "@/schemas/login-form-schema";
+import { LoginFormSchema, loginFormSchema } from "@/schemas/login-form-schema";
 import {
   Button,
   Input,
@@ -18,16 +16,10 @@ import {
   FormMessage,
 } from "@/components";
 import { formValidation } from "@/utils/form";
-
-interface FormValues {
-  email: string;
-  password: string;
-}
+import { login } from "@/actions/auth";
 
 function LoginPage() {
-  const router = useRouter();
-
-  const form = useForm<FormValues>({
+  const form = useForm<LoginFormSchema>({
     defaultValues: {
       email: "",
       password: "",
@@ -43,13 +35,11 @@ function LoginPage() {
   } = form;
 
   const onSubmit = handleSubmit(async (data) => {
-    const res = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
-
-    if (res?.ok) router.push("/characters");
+    try {
+      await login(data);
+    } catch (error) {
+      console.error(error);
+    }
   });
 
   return (

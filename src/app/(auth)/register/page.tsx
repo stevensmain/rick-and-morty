@@ -3,9 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
-import { registerFormSchema } from "@/schemas/register-form-schema";
+import {
+  RegisterFormSchema,
+  registerFormSchema,
+} from "@/schemas/register-form-schema";
 import {
   Button,
   Form,
@@ -21,7 +23,7 @@ import { formValidation } from "@/utils/form";
 function RegisterPage() {
   const router = useRouter();
 
-  const form = useForm<yup.InferType<typeof registerFormSchema>>({
+  const form = useForm<RegisterFormSchema>({
     defaultValues: {
       username: "",
       email: "",

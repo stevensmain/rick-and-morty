@@ -20,3 +20,5 @@ export const registerFormSchema = yup.object({
     .required("Confirmation is required")
     .oneOf([yup.ref("password")], "Passwords must match"),
 });
+
+export type RegisterFormSchema = yup.InferType<typeof registerFormSchema>;
