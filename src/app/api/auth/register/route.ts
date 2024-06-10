@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { User } from "@prisma/client";
-import bcrypt from "bcrypt";
-import db from "@/libs/db";
+import bcrypt from "bcryptjs";
+import db from "@/lib/db";
 
 interface UserRequestBody {
   email: string;
