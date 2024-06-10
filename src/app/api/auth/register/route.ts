@@ -2,12 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { User } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import db from "@/lib/db";
-
-interface UserRequestBody {
-  email: string;
-  username: string;
-  password: string;
-}
+import { RegisterFormSchema } from "@/schemas/register-form-schema";
 
 interface AppError extends Error {
   message: string;
@@ -16,7 +11,8 @@ interface AppError extends Error {
 
 export async function POST(request: NextRequest) {
   try {
-    const data: UserRequestBody = await request.json();
+    const data: Omit<RegisterFormSchema, "confirmPassword"> =
+      await request.json();
 
     const userFound = await db.user.findUnique({
       where: {
