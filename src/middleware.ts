@@ -17,3 +17,7 @@ export default auth(async function middleware(req: NextRequest) {
   if (!isAuthenticated && !isAuthRoute)
     return Response.redirect(new URL(AUTH_ROOT, nextUrl));
 });
+
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+};
