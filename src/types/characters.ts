@@ -1,8 +1,3 @@
-export interface CharactersResponse {
-  info: Info;
-  results: Character[];
-}
-
 export type Status = "Unknown" | "Dead" | "Alive";
 
 export type Gender = "Female" | "Male" | "Genderless" | "unknown";
@@ -18,13 +13,6 @@ export type Species =
   | "Cronenberg"
   | "Robot"
   | "Unknown";
-
-export interface Info {
-  count: number;
-  pages: number;
-  next: string | null;
-  prev: string | null;
-}
 
 export interface Character {
   id: number;
