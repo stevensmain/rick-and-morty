@@ -75,7 +75,7 @@ export function EpisodeCreateForm() {
               <FormItem className="w-full">
                 <FormControl>
                   <Input
-                    type="datetime-local"
+                    type="date"
                     placeholder="Air date"
                     className="p-4 text-sm bg-white"
                     {...field}
