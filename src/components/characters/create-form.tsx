@@ -16,6 +16,7 @@ import {
   SelectValue,
   Button,
   FormMessage,
+  useToast,
 } from "@/components";
 import { useCharacters } from "@/hooks";
 import { formValidation } from "@/utils";
@@ -24,14 +25,15 @@ import { CreateCharacterFormValues, CreateCharacterSchema } from "@/schemas";
 
 export function CreateCharacterForm() {
   const { addCharacter, setShowCreateModal } = useCharacters();
+  const { toast } = useToast();
 
   const form = useForm<CreateCharacterFormValues>({
     defaultValues: {
       name: "",
       image: "",
-      gender: "",
-      species: "",
-      status: "",
+      gender: "Male",
+      species: "Human",
+      status: "Alive",
     },
     resolver: yupResolver(CreateCharacterSchema),
   });
@@ -48,8 +50,21 @@ export function CreateCharacterForm() {
   };
 
   const onSubmit = handleSubmit((data) => {
-    addCharacter(data);
-    onClose();
+    try {
+      addCharacter(data);
+      toast({
+        title: "Character created",
+        description: "The character was created successfully",
+      });
+      onClose();
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: "An error occurred while creating the character",
+        variant: "destructive",
+      });
+    }
   });
 
   return (

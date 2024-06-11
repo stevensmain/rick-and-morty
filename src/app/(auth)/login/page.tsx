@@ -13,11 +13,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  useToast,
 } from "@/components";
-import { formValidation } from "@/utils/form";
-import { login } from "@/actions/auth";
+import { formValidation } from "@/utils";
+import { login } from "@/actions";
 
 function LoginPage() {
+  const { toast } = useToast();
   const form = useForm<LoginFormSchema>({
     defaultValues: {
       email: "",
@@ -36,8 +38,15 @@ function LoginPage() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       await login(data);
+      toast({
+        title: "Login successful",
+      });
     } catch (error) {
       console.error(error);
+      toast({
+        title: "Login failed",
+        variant: "destructive",
+      });
     }
   });
 

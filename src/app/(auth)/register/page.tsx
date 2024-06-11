@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { RegisterFormSchema, registerFormSchema } from "@/schemas";
 import {
   Button,
   Form,
@@ -14,11 +13,14 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  useToast,
 } from "@/components";
-import { formValidation } from "@/utils/form";
+import { formValidation } from "@/utils";
+import { RegisterFormSchema, registerFormSchema } from "@/schemas";
 
 function RegisterPage() {
   const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm<RegisterFormSchema>({
     defaultValues: {
@@ -51,7 +53,15 @@ function RegisterPage() {
     });
 
     if (res.ok) {
+      toast({
+        title: "Register successful",
+      });
       router.push("/login");
+    } else {
+      toast({
+        title: "Register failed",
+        variant: "destructive",
+      });
     }
   });
 

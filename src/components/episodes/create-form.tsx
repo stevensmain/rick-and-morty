@@ -11,6 +11,7 @@ import {
   Input,
   Button,
   FormMessage,
+  useToast,
 } from "@/components";
 import { useEpisodes } from "@/hooks";
 import { formValidation } from "@/utils";
@@ -18,6 +19,7 @@ import { CreateEpisodeFormValues, CreateEpisodeSchema } from "@/schemas";
 
 export function EpisodeCreateForm() {
   const { addEpisode, setShowCreateModal } = useEpisodes();
+  const { toast } = useToast();
 
   const form = useForm<CreateEpisodeFormValues>({
     defaultValues: {
@@ -41,8 +43,21 @@ export function EpisodeCreateForm() {
   };
 
   const onSubmit = handleSubmit((data) => {
-    addEpisode(data);
-    onClose();
+    try {
+      addEpisode(data);
+      toast({
+        title: "Episode created",
+        description: "The episode was created successfully",
+      });
+      onClose();
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description: "An error occurred while creating the episode",
+        variant: "destructive",
+      });
+    }
   });
 
   return (
