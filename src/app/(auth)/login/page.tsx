@@ -9,7 +9,6 @@ import {
   Input,
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -56,10 +55,7 @@ function LoginPage() {
               <FormControl>
                 <Input placeholder="user@example.com" {...field} type="email" />
               </FormControl>
-              <FormDescription>
-                {formValidation(errors, field.name)}
-              </FormDescription>
-              <FormMessage />
+              <FormMessage>{formValidation(errors, field.name)}</FormMessage>
             </FormItem>
           )}
         />
@@ -73,10 +69,7 @@ function LoginPage() {
               <FormControl>
                 <Input placeholder="*****" {...field} type="password" />
               </FormControl>
-              <FormDescription>
-                {formValidation(errors, field.name)}
-              </FormDescription>
-              <FormMessage />
+              <FormMessage>{formValidation(errors, field.name)}</FormMessage>
             </FormItem>
           )}
         />
