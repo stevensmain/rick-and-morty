@@ -1,10 +1,11 @@
 import Credentials from "next-auth/providers/credentials";
-import type { NextAuthConfig } from "next-auth";
 import bcrypt from "bcryptjs";
-import { ValidationError } from "yup";
 import { User } from "@prisma/client";
-import { loginFormSchema } from "./schemas/login-form-schema";
-import db from "@/lib/db";
+import { ValidationError } from "yup";
+import type { NextAuthConfig } from "next-auth";
+
+import { loginFormSchema } from "@/schemas";
+import { db } from "@/lib";
 
 export default {
   providers: [
