@@ -1,7 +1,7 @@
 "use server";
 
 import { signIn, signOut } from "@/auth";
-import { LoginFormSchema } from "@/schemas/auth/login-form-schema";
+import { LoginFormSchema } from "@/schemas";
 
 export const handleLogout = async () => await signOut();
 
