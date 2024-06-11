@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import authConfig from "./auth.config";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.AUTH_SECRET,
+  trustHost: true,
   ...authConfig,
 });
