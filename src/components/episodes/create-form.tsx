@@ -24,6 +24,7 @@ export function EpisodeCreateForm() {
       name: "",
       air_date: "",
       episode: "",
+      season: "",
     },
     resolver: yupResolver(CreateEpisodeSchema),
   });
@@ -88,12 +89,33 @@ export function EpisodeCreateForm() {
 
           <FormField
             control={control}
+            name="season"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Input
+                    type="number"
+                    min={1}
+                    placeholder="Season"
+                    className="p-4 text-sm bg-white"
+                    {...field}
+                  />
+                </FormControl>
+
+                <FormMessage>{formValidation(errors, field.name)}</FormMessage>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={control}
             name="episode"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
                   <Input
-                    type="text"
+                    type="number"
+                    min={1}
                     placeholder="Episode"
                     className="p-4 text-sm bg-white"
                     {...field}

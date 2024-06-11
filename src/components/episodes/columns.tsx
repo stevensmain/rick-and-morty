@@ -6,7 +6,7 @@ import { EpisodesRowActions } from "./row-actions";
 
 export const EpisodesColumns: ColumnDef<Episode>[] = [
   {
-    header: "Name",
+    header: "Episode",
     accessorKey: "episode",
   },
   {
