@@ -3,7 +3,10 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { LoginFormSchema, loginFormSchema } from "@/schemas/login-form-schema";
+import {
+  LoginFormSchema,
+  loginFormSchema,
+} from "@/schemas/auth/login-form-schema";
 import {
   Button,
   Input,

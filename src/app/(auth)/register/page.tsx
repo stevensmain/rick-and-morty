@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   RegisterFormSchema,
   registerFormSchema,
-} from "@/schemas/register-form-schema";
+} from "@/schemas/auth/register-form-schema";
 import {
   Button,
   Form,

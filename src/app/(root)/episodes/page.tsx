@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { ApiResponse, Episode } from "@/types";
+import { EpisodesTable } from "@/components";
 
 export const metadata: Metadata = {
   title: "Episodes | Rick And Morty Project",
@@ -15,7 +16,10 @@ async function getEpisodes(): Promise<ApiResponse<Episode>> {
 
 export default async function EpisodesPage() {
   const { results } = await getEpisodes();
-  console.log(results);
 
-  return <></>;
+  return (
+    <>
+      <EpisodesTable episodes={results} />
+    </>
+  );
 }
