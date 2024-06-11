@@ -6,6 +6,8 @@ export * from "./characters/edit-modal";
 export * from "./characters/row-actions";
 export * from "./characters/table";
 export * from "./episodes/columns";
+export * from "./episodes/create-form";
+export * from "./episodes/create-modal";
 export * from "./episodes/edit-form";
 export * from "./episodes/edit-modal";
 export * from "./episodes/row-actions";

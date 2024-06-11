@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { ApiResponse, Episode } from "@/types";
-import { EpisodesTable } from "@/components";
+import { EpisodeCreateModal, EpisodesTable } from "@/components";
 
 export const metadata: Metadata = {
   title: "Episodes | Rick And Morty Project",
@@ -20,6 +20,7 @@ export default async function EpisodesPage() {
   return (
     <>
       <EpisodesTable episodes={results} />
+      <EpisodeCreateModal />
     </>
   );
 }
