@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Episode } from "@/types";
 import { CreateEpisodeFormValues } from "@/schemas";
+import { formatDate } from "@/utils";
 
 interface State {
   episodes: Episode[];
@@ -32,7 +33,26 @@ export const episodesStore = create(
       setShowCreateModal: (show) => set({ showCreateModal: show }),
       setShowEditModal: (show) => set({ showEditModal: show }),
       addEpisode: (episode) => {
-        const newEpisode = { ...episode, id: Date.now(), characters: [] };
+        const airDate = formatDate(episode.air_date);
+        const parseEpisode = parseInt(episode.episode).toLocaleString("en-US", {
+          minimumIntegerDigits: 2,
+          useGrouping: false,
+        });
+        const parseSeason = parseInt(episode.season).toLocaleString("en-US", {
+          minimumIntegerDigits: 2,
+          useGrouping: false,
+        });
+        const seasonAndEpisode = `S${parseSeason}E${parseEpisode}`;
+        const id = Date.now();
+
+        const newEpisode: Episode = {
+          id,
+          air_date: airDate,
+          episode: seasonAndEpisode,
+          name: episode.name,
+          characters: [],
+        };
+
         set((state) => ({ episodes: [newEpisode, ...state.episodes] }));
       },
       updateEpisode: (episode) =>
