@@ -4,18 +4,17 @@ import { Search } from "lucide-react";
 import { Table } from "@tanstack/react-table";
 
 import { Input } from "@/components";
-import { Character } from "@/types";
 
 interface FilterInputProps<TData> {
   table: Table<TData>;
   placeholder?: string;
-  columnKey?: keyof Character;
+  columnKey?: keyof TData;
   widthFull?: boolean;
 }
 
 export function FilterInput<TData>({
   table,
-  columnKey = "name",
+  columnKey,
   placeholder = "Filter by name...",
   widthFull = false,
 }: FilterInputProps<TData>) {
@@ -29,9 +28,14 @@ export function FilterInput<TData>({
 
       <Input
         placeholder={placeholder}
-        value={(table.getColumn(columnKey)?.getFilterValue() as string) ?? ""}
+        value={
+          (table.getColumn(columnKey as string)?.getFilterValue() as string) ??
+          ""
+        }
         onChange={(event) =>
-          table.getColumn(columnKey)?.setFilterValue(event.target.value)
+          table
+            .getColumn(columnKey as string)
+            ?.setFilterValue(event.target.value)
         }
         className="pl-12 pr-4 text-sm py-4 bg-white"
       />

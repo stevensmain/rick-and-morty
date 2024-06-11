@@ -20,7 +20,7 @@ interface Actions {
   setShowEditModal: (show: boolean) => void;
 }
 
-const charactersStore = create(
+export const charactersStore = create(
   persist<State & Actions>(
     (set) => ({
       characters: [],
@@ -57,5 +57,3 @@ const charactersStore = create(
     }
   )
 );
-
-export default charactersStore;

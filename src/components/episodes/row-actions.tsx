@@ -3,36 +3,32 @@
 import { Row } from "@tanstack/react-table";
 
 import { Button } from "@/components";
-import { useCharacters } from "@/hooks";
-import { Character } from "@/types";
+import { useEpisodes } from "@/hooks";
+import { Episode } from "@/types";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
 
-export function CharactersRowActions<TData>({
+export function EpisodesRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const { removeCharacter, setCurrentCharacter, setShowEditModal } =
-    useCharacters();
-  const character = row.original as Character;
+  const { deleteEpisode, setCurrentEpisode, setShowEditModal } = useEpisodes();
+  const episode = row.original as Episode;
 
   return (
     <div className="flex items-center gap-3">
       <Button
         variant="secondary"
         onClick={() => {
-          setCurrentCharacter(character);
+          setCurrentEpisode(episode);
           setShowEditModal(true);
         }}
       >
         Edit
       </Button>
 
-      <Button
-        variant="destructive"
-        onClick={() => removeCharacter(character.id)}
-      >
+      <Button variant="destructive" onClick={() => deleteEpisode(episode.id)}>
         Delete
       </Button>
     </div>

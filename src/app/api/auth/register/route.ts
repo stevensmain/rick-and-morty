@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { User } from "@prisma/client";
 import bcrypt from "bcryptjs";
-import db from "@/lib/db";
-import { RegisterFormSchema } from "@/schemas/register-form-schema";
+import { db } from "@/lib";
+import { RegisterFormSchema } from "@/schemas";
 
 interface AppError extends Error {
   message: string;

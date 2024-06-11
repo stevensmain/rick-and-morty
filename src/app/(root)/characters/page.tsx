@@ -1,12 +1,12 @@
 import { CharacterCreateModal, CharactersTable } from "@/components";
-import { CharactersResponse } from "@/types";
+import { ApiResponse, Character } from "@/types";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Characters | Rick And Morty Project",
 };
 
-async function getCharacters(query: string): Promise<CharactersResponse> {
+async function getCharacters(query: string): Promise<ApiResponse<Character>> {
   const response = await fetch(
     `https://rickandmortyapi.com/api/character/?${query}`
   );

@@ -35,7 +35,7 @@ export function CharacterEditForm() {
   const form = useForm<EditCharacterFormValues>({
     defaultValues: {
       name: "",
-      status: "",
+      status: "Alive",
     },
     resolver: yupResolver(EditCharacterSchema),
   });

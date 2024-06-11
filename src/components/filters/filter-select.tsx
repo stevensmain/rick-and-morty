@@ -9,12 +9,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components";
-import { Character } from "@/types";
 
 interface FilterSelectProps<TData> {
   table: Table<TData>;
   placeholder: string;
-  columnKey: keyof Character;
+  columnKey: keyof TData;
   selectOptions: {
     value: string;
     label: string;
@@ -30,12 +29,14 @@ export function FilterSelect<TData>({
   return (
     <Select
       defaultValue={
-        (table.getColumn(columnKey)?.getFilterValue() as string) ?? ""
+        (table.getColumn(columnKey as string)?.getFilterValue() as string) ?? ""
       }
       onValueChange={(selectValue) =>
-        table.getColumn(columnKey)?.setFilterValue(selectValue)
+        table.getColumn(columnKey as string)?.setFilterValue(selectValue)
       }
-      value={(table.getColumn(columnKey)?.getFilterValue() as string) ?? ""}
+      value={
+        (table.getColumn(columnKey as string)?.getFilterValue() as string) ?? ""
+      }
     >
       <SelectTrigger className="w-full max-w-[240px] truncate bg-white">
         <SelectValue placeholder={placeholder} />

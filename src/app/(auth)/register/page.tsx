@@ -4,10 +4,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import {
-  RegisterFormSchema,
-  registerFormSchema,
-} from "@/schemas/register-form-schema";
+import { RegisterFormSchema, registerFormSchema } from "@/schemas";
 import {
   Button,
   Form,

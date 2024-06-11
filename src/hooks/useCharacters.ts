@@ -1,4 +1,4 @@
-import charactersStore from "@/store/characters";
+import { charactersStore } from "@/store";
 
 export const useCharacters = () => {
   const {
