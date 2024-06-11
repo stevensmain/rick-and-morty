@@ -10,7 +10,9 @@ interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
 
-export function RowActions<TData>({ row }: DataTableRowActionsProps<TData>) {
+export function CharactersRowActions<TData>({
+  row,
+}: DataTableRowActionsProps<TData>) {
   const { removeCharacter, setCurrentCharacter, setShowEditModal } =
     useCharacters();
   const character = row.original as Character;

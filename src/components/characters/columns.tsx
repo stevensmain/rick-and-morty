@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Character } from "@/types";
-import { RowActions } from "@/components";
+import { CharactersRowActions } from "@/components";
 
 export const CharacterColumns: ColumnDef<Character>[] = [
   {
@@ -24,6 +24,6 @@ export const CharacterColumns: ColumnDef<Character>[] = [
   {
     id: "actions",
     header: "Actions",
-    cell: ({ row }) => <RowActions row={row} />,
+    cell: ({ row }) => <CharactersRowActions row={row} />,
   },
 ];
