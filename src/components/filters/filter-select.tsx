@@ -9,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components";
-import { Character } from "@/types";
 
 interface FilterSelectProps<TData> {
   table: Table<TData>;
